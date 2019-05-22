@@ -1,18 +1,28 @@
 <template>
   <div>
-    <div v-for="week in weeks" :key="week">
-      Week
-      <div v-for="(day, index) in week" :key="index">{{day}}</div>
+    <div id="day-bar">
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+      <div>Sun</div>
+    </div>
+    <div id="calendar">
+      <div class="calendar-week" v-for="week in weeks" :key="week">
+        <calendar-day v-for="(day, index) in week" :key="index" :day="day"></calendar-day>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import CalendarDay from './CalendarDay.vue';
+
 export default {
-  data() {
-    return {
-      month: 5,
-      year: 2019,
-    };
+  name: 'App',
+  components: {
+    CalendarDay,
   },
   computed: {
     days() {
@@ -61,6 +71,12 @@ export default {
         }
       }
       return weeks;
+    },
+    month() {
+      return this.$store.state.currentMonth;
+    },
+    year() {
+      return this.$store.state.currentYear;
     },
   },
 };
