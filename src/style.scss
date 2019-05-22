@@ -44,7 +44,6 @@ body {
   display: flex;
   justify-content: center;
 
-
   // Test
   background-color: $gallery;
 
@@ -152,10 +151,8 @@ body {
           }
         }
 
-
         .day {
-
-
+          color: $dusty-gray;
         }
         &:last-child {
           .day {
@@ -168,7 +165,6 @@ body {
     $event-form-width: 300px;
 
     #event-form {
-
       display: none;
       box-shadow: 0 2px 4px $alto;
       position: fixed;
@@ -186,7 +182,6 @@ body {
       flex-direction: column;
       align-content: space-between;
 
-
       h4 {
         margin: 0 0 0.75rem 0;
         color: $dusty-gray;
@@ -199,15 +194,18 @@ body {
         margin: 0 0 0.85rem 0;
       }
 
-
       & > * {
-        width: 100%
+        width: 100%;
       }
       .text {
         input[type='text'] {
           width: calc(100% - 0.75rem);
           padding: 0.25rem;
           font-size: 0.75rem;
+
+          &::placeholder {
+            color: #ccc;
+          }
         }
         margin-bottom: 0.75rem;
       }
@@ -221,7 +219,7 @@ body {
           font-weight: bold;
           border-radius: 2px;
           color: white;
-          &:focus  {
+          &:focus {
             outline: none;
           }
           &:hover {
@@ -243,12 +241,10 @@ body {
         right: 0.6rem;
         top: 0.6rem;
         cursor: pointer;
-        &:focus  {
+        &:focus {
           outline: none;
         }
       }
     }
-
   }
-
 }
