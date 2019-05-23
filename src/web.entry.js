@@ -13,6 +13,25 @@ Object.defineProperty(Vue.prototype, '$moment', {
   },
 });
 
+const events = [
+  {
+    description: 'Eventerino',
+    date: moment('2019-03-06', 'YYYY-MM-DD'),
+  },
+  {
+    description: 'Tododerino',
+    date: moment('2019-05-22', 'YYYY-MM-DD'),
+  },
+  {
+    description: 'Activitisky',
+    date: moment('2019-05-30', 'YYYY-MM-DD'),
+  },
+];
+
+const initialState = Object.assign({}, store.state, { events: events });
+
+store.replaceState(initialState);
+
 new Vue({
   el: '#app',
   data: {
