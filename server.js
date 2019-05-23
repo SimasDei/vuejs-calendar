@@ -6,12 +6,19 @@ const path = require('path');
 const fs = require('fs');
 const http = require('http');
 
+app.use(require('body-parser').json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
   let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
   res.send(template);
+});
 
+let events = [];
+
+app.post('/add_event', (req, res) => {
+  res.sendStatus(200);
+  events.push(req.body);
 });
 
 const server = http.createServer(app);
@@ -22,9 +29,9 @@ if (process.env.NODE_ENV === 'development') {
   require('./webpack-dev-middleware').init(app);
 }
 
-server.listen(process.env.PORT, function () {
+server.listen(process.env.PORT, function() {
   console.log(`Example app listening on port ${process.env.PORT}!`);
   if (process.env.NODE_ENV === 'development') {
-    require("opn")(`http://localhost:${process.env.PORT}`);
+    require('opn')(`http://localhost:${process.env.PORT}`);
   }
 });

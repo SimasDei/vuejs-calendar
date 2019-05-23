@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import moment from 'moment';
+import axios from 'axios';
+
 Vue.use(Vuex);
 
 const state = {
@@ -67,10 +69,15 @@ const actions = {
     commit('EVENT_FORM_TOGGLE');
   },
   addEvent({ commit, state }, payload) {
-    commit('ADD_EVENT', {
-      description: payload,
-      date: state.eventFormDate,
-    });
+    let obj = { description: payload, date: state.eventFormDate };
+    axios
+      .post('/add_event', obj)
+      .then(response => {
+        console.log(response);
+        commit('ADD_EVENT', obj);
+      })
+      .catch(error => console.log(error));
+
     commit('EVENT_FORM_TOGGLE');
   },
   eventFormDate({ commit }, payload) {
